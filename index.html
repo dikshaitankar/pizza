@@ -10,7 +10,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <div class="wrapper">
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Me</a>
+      <a class="navbar-brand" href="#"><img src="img/logo.png" ></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -101,17 +101,10 @@
     $.getJSON('pizza.json',function(data){
       $.each(data.items, function(i,f){
     $(".pizza_list").append("<div class='col-sm-3'><div class='card' id='card_"+t+"'><img class='card-img-top' style='width:100%' src='" + f.url +"'><div class='card-body'><label id='label_"+t+"' for='pizza_"+t+"'><input type='checkbox' class='checkbox' id='pizza_"+t+"' value='pizza_"+t+"' name='' style='float:left'><p class='caption' id='caption_"+t+"'> " + f.caption +" </p><small>"+f.ingr+"</small><span style='float: left;text-align: center;width: 100%;' id='price_"+t+"'>"+f.price+"</span></label></div></div></div>");
-
-
-
-
-t++;
+      t++;
     });
       
   });
-
-
-
 });
 
 var counter = Math.floor(Math.random() * 16 + 15);
@@ -189,3 +182,4 @@ $(document).on('change','.checkbox',function(){
 </script>
 </body>
 </html>
+
