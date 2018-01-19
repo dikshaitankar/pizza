@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Order Pizza</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div class="wrapper">
+<!-- Modal Starts -->
+<div id="summaryModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Order Summary List</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered" id="table1">
+        	<thead style="color: black;">
+        		<tr>
+        			<th>Pizza Name</th>
+        			<th>Price</th>
+        		</tr>
+        	</thead>
+        	<tbody id="pizza_sum">
+        		
+        	</tbody>
+        	<tr>
+        		<th style="color: black;">Total</th>
+        		<td style="color: black;" id="total"></td>
+        	</tr>
+        	<tr>
+        		<th><input type="checkbox" id="dist_check"> Click to avail Discount</th>
+        		<td id="grndTot"></td>
+        	</tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="confirm" data-dismiss="modal">Confirm Order</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal Ends -->
+
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Me</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+  <h3 class="margin">List of Pizzas</h3>
+  <div class="pizza_list">
+    
+  </div>
+<div class="submit_button">
+	<input type="submit" value="Order Summary" class="btn btn-info" name="" id="getSum">
+</div>
+
+
+</div>
+
+</div>
+
+<script>
+
+
+  $(function(){
+	var t = 0;
+    $.getJSON('js/pizza_list.json',function(data){
+      $.each(data.items, function(i,f){
+    $(".pizza_list").append("<div class='col-sm-3'><div class='card' id='card_"+t+"'><img class='card-img-top' style='width:100%' src='" + f.url +"'><div class='card-body'><label id='label_"+t+"' for='pizza_"+t+"'><input type='checkbox' class='checkbox' id='pizza_"+t+"' value='pizza_"+t+"' name='' style='float:left'><p class='caption' id='caption_"+t+"'> " + f.caption +" </p><small>"+f.ingr+"</small><span style='float: left;text-align: center;width: 100%;' id='price_"+t+"'>"+f.price+"</span></label></div></div></div>");
+
+
+
+
+t++;
+    });
+      
+  });
+
+
+
+});
+
+var counter = Math.floor(Math.random() * 16 + 15);
+$(document).ready(function(){
+	$("#confirm").click(function(){
+ 		alert("Your order will be delivered in "+counter+" minutes");
+ 	});
+});
+
+
+$(document).on('change','.checkbox',function(){
+	var id = this.id;
+	$('#getSum').on('click',(function(){
+
+			if ($('#' +id).is(":checked")){ 
+		 		
+			$('#summaryModal').modal('show');
+			$($('#' +id)).siblings("p").each(function(){
+          		
+        	var table_data = $(this).html();
+
+        	$($('#' +id)).siblings("span").each(function(){
+        		var table_price = $(this).text();
+			
+			$("#pizza_sum").append("<tr><td>" +table_data+ "</td><td class='td2'>" +table_price+ "</td></tr>");
+            
+				
+
+    	});
+        });
+   		}
+   		else{
+   			/*alert("Please Order atleast One Pizza");*/
+   			$('#summaryModal').modal('hide');
+   		}
+
+		var sum , dist;
+		
+		  $('#table1').each(function(){
+		  	
+		  	$('.td2').each(function(index,val){
+		    	 if(!sum) sum = 0;
+	            sum += parseInt($(val).text());
+	           
+		    });
+
+		  	$('#total').text(sum);
+
+		  });
+
+	$(document).on('change',"#dist_check",function(){
+ 			if($(this).prop("checked")){
+				  	if(!dist) dist = 0;
+				  	dist = sum - ((5/100)*sum);
+				  	
+		  		}
+		  		else{
+		  			dist = 0;
+		  		}
+		  		$('#grndTot').text(dist);	
+		  	});
+		  	
+		 
+
+		})
+
+	);
+	
+    
+
+   });
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+  .bg-1 { 
+      background-color: #1abc9c; /* Green */
+      color: #ffffff;
+  }
+  .container-fluid {  
+      padding-bottom: 70px;
+  }
+  .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+      color: #1abc9c !important;
+  }
+
+  .card{
+    border: 1px solid black;
+    opacity: .5;
+    margin: 3% auto;
+  }
+  .card:hover{
+    opacity: 1;
+    box-shadow: 10px 0px 10px 0px rgba(0,0,0,.5);
+  }
+  .caption{
+    width: 100%;
+    margin: 0 auto;
+    font-size: 15px;
+  }
+  td{
+    color: darkgray;
+    font-weight: bold;
+  }
