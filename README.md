@@ -6,4 +6,4 @@ I am proficient at html(latest version), css(latest version),bootstrap(4),jquery
 
 
 # Project Installation
-After downloading the project simply run the html file on Firefox browser(56.0)
+After downloading the project simply run the html file on Firefox browser(56.0) OR install Wamp server and then run the file on any browser.
