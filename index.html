@@ -98,7 +98,7 @@
 
   $(function(){
 	var t = 0;
-    $.getJSON('js/pizza_list.json',function(data){
+    $.getJSON('pizza.json',function(data){
       $.each(data.items, function(i,f){
     $(".pizza_list").append("<div class='col-sm-3'><div class='card' id='card_"+t+"'><img class='card-img-top' style='width:100%' src='" + f.url +"'><div class='card-body'><label id='label_"+t+"' for='pizza_"+t+"'><input type='checkbox' class='checkbox' id='pizza_"+t+"' value='pizza_"+t+"' name='' style='float:left'><p class='caption' id='caption_"+t+"'> " + f.caption +" </p><small>"+f.ingr+"</small><span style='float: left;text-align: center;width: 100%;' id='price_"+t+"'>"+f.price+"</span></label></div></div></div>");
 
