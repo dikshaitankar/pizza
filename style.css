@@ -1,5 +1,5 @@
     .bg-1 { 
-      background-color: #1abc9c; /* Green */
+      background-color: #80f0da; 
       color: #ffffff;
   }
   .container-fluid {  
@@ -37,6 +37,7 @@
     border: 1px solid black;
     opacity: .5;
     margin: 3% auto;
+      color:black;
   }
   .card:hover{
     opacity: 1;
